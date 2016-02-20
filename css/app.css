@@ -11,3 +11,10 @@ body {
     border: 1px solid #eee;
     border-radius: 4px;
 }
+
+
+
+.angular-google-map-container { 	
+	height : 700px;
+	width : 100%;
+ }
