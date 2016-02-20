@@ -1,4 +1,4 @@
-angular.module('koding').filter('capitalize', function() {
+angular.module('doodly').filter('capitalize', function() {
     return function(input, param) {
         //return input.substring(0,1).toUpperCase()+input.substring(1);
         return input.toUpperCase();

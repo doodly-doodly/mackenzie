@@ -1,4 +1,4 @@
-angular.module('koding').factory('GeolocationFactory', ['$q', '$window',function($q, $window) {
+angular.module('doodly').factory('GeolocationFactory', ['$q', '$window',function($q, $window) {
 
     var geolocationFactory = this;
 
