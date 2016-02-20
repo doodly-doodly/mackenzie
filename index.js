@@ -3,6 +3,7 @@
 */
 
 var express = require("express");
+var serveStatic = require('serve-static')
 var app = express();
 
 var bodyParser = require("body-parser");
@@ -20,6 +21,9 @@ var options =
 //Required for getting the request data.
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
+
+app.use(serveStatic('ui', {'index': ['index.html', 'index.htm']}));
+
 
 app.use(function (req, res, next) {
 
