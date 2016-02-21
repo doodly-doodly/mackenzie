@@ -16,11 +16,11 @@ angular.module('doodly').config(function($stateProvider, $urlRouterProvider) {
         templateUrl: 'partials/about-us.html',        
         controller : 'MainCtrl'
       })
-      .state ('demoMenu', {
+      /*.state ('demoMenu', {
         url: '/demo',
         templateUrl: 'partials/simulate.html',        
         controller : 'SimulatorCtrl'
-      })
+      })*/
       .state ('contactMenu', {
         url: '/contact',
         templateUrl: 'partials/contact-us.html',        

@@ -3,12 +3,13 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
     //TODO
     $scope.menus = [{label: 'Home',id: "homeMenu",templateUrl:"homepage.html"},
                       {label: 'About Doodly',id: "aboutUsMenu",templateUrl:"about-us.html"},
-                      {label: 'Demo',id: "demoMenu",templateUrl:"landing.html"},
+                      {label: 'Simulate',id: "simulate",templateUrl:"simulate.html"},
                       {label:'Contact',id:"contactMenu",templateUrl:"contact-us.html"},
                       {label: 'Login',id: "loginMenu",templateUrl:"login.html"},
                       {label:'Become a Doodly',id:"signupMenu",templateUrl:"signup.html"}];
 
-    $scope.currentMenu = $scope.menus[0];
+    $scope.currentMenu = $scope.menus[0];        
+
 
     $scope.getCurrentMenu = function(){
       return $scope.currentMenu;
@@ -50,6 +51,18 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
     $scope.loginBgImage = {
         //background: 'url(images/delivery-boy.png)'
     };
+
+    if($location.$$url.indexOf('about-us') > -1){
+      $scope.currentMenu = $scope.menus[1];
+    }else if($location.$$url.indexOf('signup') > -1){
+      $scope.currentMenu = $scope.menus[5];
+    }else if($location.$$url.indexOf('simulate') > -1){
+      $scope.currentMenu = $scope.menus[2];
+    }else if($location.$$url.indexOf('contact') > -1){
+      $scope.currentMenu = $scope.menus[3];
+    }else if($location.$$url.indexOf('login') > -1){
+      $scope.currentMenu = $scope.menus[4];
+    } 
 }]);
 
 
