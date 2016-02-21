@@ -36,5 +36,9 @@ angular.module('doodly').config(function($stateProvider, $urlRouterProvider) {
         templateUrl: 'partials/signup.html',        
         controller : 'SignupCtrl'
       })
+      .state('register',{
+        url : '/register',
+        templateUrl : 'partials/registration.html'
+      })
       $urlRouterProvider.otherwise('/home');
 });

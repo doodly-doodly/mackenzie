@@ -33,4 +33,31 @@
 	width : 100%;
  }
 
+ .doodly-radio{
+    color: #9d9da3;    
+    font-weight: 500
+ }
+
+.doodly-input{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    height: auto;
+    width: 100%;
+    outline: none;
+    font-size: 13px;
+}
+ .doodly-input-line{
+    position: absolute;
+    z-index: 2;
+    display: block;
+    bottom: -1px;
+    height: 5px;
+    border: none;
+    border-bottom: 1px solid #97bcf9;
+    right: 16px;
+    left: 16px;
+}
+
+
 
