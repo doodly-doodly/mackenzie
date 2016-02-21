@@ -1,11 +1,11 @@
 /*
  * Project Doodly GetDoodlies service
  */
-
+var esmodule = require("../../esmodule"); 
 exports.getDoodliesImpl = function (req, res)
 {
     //var data = req.body;
-    var response = [
+   /* var response = [
         {
             id: "d1",
             type : "moving",
@@ -53,5 +53,16 @@ exports.getDoodliesImpl = function (req, res)
         }];
 
     res.writeHead(200, "OK", {'Content-Type': 'text/html'});    
-    res.end(JSON.stringify(response));
+    res.end(JSON.stringify(response)); */
+
+
+    esmodule.getAllDoodlys(function(doodlys){
+        var result = [];
+        for(var i=0; i<doodlys.length;i++){         
+            result.push(doodlys[i]["_source"]);
+        }
+        //console.log(result);
+            res.writeHead(200, "OK", {'Content-Type': 'text/html'});    
+            res.end(JSON.stringify(result));
+    });
 };
