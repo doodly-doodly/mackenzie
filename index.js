@@ -30,12 +30,13 @@ app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', '*');
+    //res.setHeader('Access-Control-Allow-Origin', 'http:*');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
     // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding');
 
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
@@ -55,11 +56,11 @@ var userSignup = require("./api/routes/UserSignup");
 
 //Exposing the services.
 app.post("/doodly/rest/v1/getdoodlies", getDoodlies.getDoodliesImpl);
-app.post("/doodly/rest/v1/updateDoodlydtatus", updateDoodlyStatus.updateDoodlyStatusImpl);
-app.post("/doodly/rest/v1/registerDoodly", registerDoodly.registerDoodlyImpl);
-app.post("/doodly/rest/v1/requestDelivery", requestDelivery.requestDeliveryImpl);
-app.post("/doodly/rest/v1/userLogin", userLogin.userLoginImpl);
-app.post("/doodly/rest/v1/userSignup", userSignup.userSignupImpl);
+app.post("/doodly/rest/v1/updatedoodlydtatus", updateDoodlyStatus.updateDoodlyStatusImpl);
+app.post("/doodly/rest/v1/registerdoodly", registerDoodly.registerDoodlyImpl);
+app.post("/doodly/rest/v1/requestdelivery", requestDelivery.requestDeliveryImpl);
+app.post("/doodly/rest/v1/userlogin", userLogin.userLoginImpl);
+app.post("/doodly/rest/v1/usersignup", userSignup.userSignupImpl);
 
 // Starting the http server.
 app.listen(8090);
