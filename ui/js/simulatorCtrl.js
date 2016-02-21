@@ -60,9 +60,9 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$m
             				});                			
 					 	}
 					 }
-					};   					  
-					$scope.allPolylines = SimulatorFactory.getPolylines(result.data);
+					};   					  					
 					$scope.allMarkers = SimulatorFactory.getMarkers(result.data);
+					$scope.allPolylines = SimulatorFactory.getPolylines(result.data);
 	          	}   
 			}
 		);	
@@ -73,7 +73,7 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$m
     	if($scope.allMarkers && $scope.allMarkers.length > 0){
 	    	console.log("Moving the points :"+currentPositionIndex);  
 	    	angular.forEach($scope.allMarkers, function(marker){            
-	          if(marker.type == 'MOVING'){                
+	          if(marker.type == 'MOVING' && marker.polyLines && marker.polyLines.length > currentPositionIndex){                
 	        	marker.coords.latitude = marker.polyLines[currentPositionIndex].latitude;
 	    		marker.coords.longitude = marker.polyLines[currentPositionIndex].longitude;                                    	
 	          }           
@@ -133,5 +133,13 @@ angular.module('doodly').controller('SimulatorModalCtrl', ['$scope', '$modalInst
         $scope.closeSelector = function () {
             $modalInstance.dismiss('cancel');
         };
+
+        google.maps.event.addDomListener(window, 'load', initSearch);
+
+        function initSearch() {
+			var input = document.getElementById('searchTextField');
+			var autocomplete = new google.maps.places.Autocomplete(input);
+		}
+
 
 }]);

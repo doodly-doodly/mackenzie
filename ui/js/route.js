@@ -38,7 +38,8 @@ angular.module('doodly').config(function($stateProvider, $urlRouterProvider) {
       })
       .state('register',{
         url : '/register',
-        templateUrl : 'partials/registration.html'
+        templateUrl : 'partials/registration.html',
+        controller : 'SimulatorModalCtrl'
       })
       $urlRouterProvider.otherwise('/home');
 });
