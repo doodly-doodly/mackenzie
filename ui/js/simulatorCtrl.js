@@ -72,7 +72,7 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$t
 
 
 	function createPackage(userSelection){
-		SimulatorService.requestDelivery(/*createPackageObject(userSelection)*/).then(
+		SimulatorService.requestDelivery(createPackageObject(userSelection)).then(
 			function(result){
 				if(result){                            
 					console.log("Output Data :"+result);		
