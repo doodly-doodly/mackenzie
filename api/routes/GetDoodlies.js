@@ -57,12 +57,9 @@ exports.getDoodliesImpl = function (req, res)
 
 
     esmodule.getAllDoodlys(function(doodlys){
-        var result = [];
-        for(var i=0; i<doodlys.length;i++){         
-            result.push(doodlys[i]["_source"]);
-        }
+        
         //console.log(result);
             res.writeHead(200, "OK", {'Content-Type': 'text/html'});    
-            res.end(JSON.stringify(result));
+            res.end(JSON.stringify(doodlys));
     });
 };
