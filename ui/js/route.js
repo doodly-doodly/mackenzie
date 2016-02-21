@@ -29,12 +29,12 @@ angular.module('doodly').config(function($stateProvider, $urlRouterProvider) {
       .state ('loginMenu', {
         url: '/login',
         templateUrl: 'partials/login.html',        
-        controller : 'MainCtrl'
+        controller : 'LoginCtrl'
       })
       .state ('signupMenu', {
         url: '/signup',
         templateUrl: 'partials/signup.html',        
-        controller : 'MainCtrl'
+        controller : 'SignupCtrl'
       })
       $urlRouterProvider.otherwise('/home');
 });
