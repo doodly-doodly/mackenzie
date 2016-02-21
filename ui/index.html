@@ -1,33 +1,87 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="doodly">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Demo</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">       
-        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css"/>
-        <link rel="stylesheet" href="css/app.css"/>        
-    </head>
-    <body>
-        <div class="my-app" ui-view></div>                         
-        <script src="lib/jquery/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.0/lodash.js"></script>            
-        <script src="lib/angular/angular.js"></script>        
-        <script src="lib/angular/angular-resource.js"></script>
-        <script src="lib/angular/angular-ui-router.js"></script>
-        <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
-        <script src="lib/angular/angular-google-maps.min.js"></script>        
-        <script src="lib/angular/angular-animate.js"></script>                    
-        <script src="lib/angular-simple-logger.js"></script>            
-        <script src="lib/polyline.js"></script>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home | Doodly</title>
+	
+	<!-- core CSS -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/form-elements.css" rel="stylesheet"/>
+</head><!--/head-->
+
+<body class="homepage" ng-controller="MainCtrl">
+    <header id="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-4">
+                        <div class="top-number"><p><i class="fa fa-phone-square"></i>  +911234567890</p></div>
+                    </div>
+                    <div class="col-sm-6 col-xs-8">
+                       <div class="social">
+                            <ul class="social-share">
+                                <li ng-repeat="socialMenu in socialMenus">
+                                    <a href="#"><i class="fa " ng-class="socialMenu.class" ng-click="clickSocialMenu(socialMenu)"></i></a>&nbsp;
+                                </li>
+                            </ul>
+                            <!-- <div class="search">
+                                <form role="form">
+                                    <input type="text" class="search-form" autocomplete="off" placeholder="Search">
+                                    <i class="fa fa-search"></i>
+                                </form>
+                           </div> -->
+                       </div>
+                    </div>
+                </div>
+            </div><!--/.container-->
+        </div><!--/.top-bar-->
+
+        <nav class="navbar navbar-inverse" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand"><img src="images/doodlyLogo.png" alt="logo"></a>
+                </div>
+                
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li ng-repeat="menu in menus" ng-class="(menu.id == currentMenu.id) ? 'active' : ''">
+                            <a class="interactive" ng-click="clickMenu(menu)">{{menu.label}}</a>
+                        </li>                        
+                    </ul>
+                </div>
+            </div><!--/.container-->
+        </nav><!--/nav-->
         
-        <script src="js/app.js"></script>                
-        <script src="js/geoLocationFactory.js"></script> 
-        <script src="js/route.js"></script>       
-        <script src="js/simulatorCtrl.js"></script>   
-        <script src="js/simulatorFactory.js"></script>
-        <script src="js/simulatorService.js"></script>                                            
-        <!--<script src="http://maps.googleapis.com/maps/api/js"></script>  -->
-    </body>
+    </header>
+    <div class="my-app" ui-view></div>
+
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.0/lodash.js"></script>            
+    <script src="lib/angular/angular.js"></script>        
+    <script src="lib/angular/angular-resource.js"></script>
+    <script src="lib/angular/angular-ui-router.js"></script>
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+    <script src="lib/angular/angular-google-maps.min.js"></script>        
+    <script src="lib/angular/angular-animate.js"></script>                    
+    <script src="lib/angular-simple-logger.js"></script>            
+    <script src="lib/polyline.js"></script>
+    
+    <script src="js/app.js"></script>                
+    <script src="js/geoLocationFactory.js"></script> 
+    <script src="js/route.js"></script>
+    <script src="js/mainCtrl.js"></script>        
+    <script src="js/simulatorCtrl.js"></script>   
+    <script src="js/simulatorFactory.js"></script>
+    <script src="js/simulatorService.js"></script>
+</body>
 </html>

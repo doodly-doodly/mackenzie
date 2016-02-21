@@ -1,4 +1,4 @@
-body {
+/*body {
     margin: 0 auto;
     padding: 0;
     width: 600px;
@@ -10,11 +10,27 @@ body {
     margin-top: 20px;
     border: 1px solid #eee;
     border-radius: 4px;
+}*/
+
+.interactive{
+    cursor: pointer !important;
 }
 
+.normal-font{
+    font-weight: normal;
+}
 
+.mandatory-symbol {
+    color: rgb(169, 68, 66);
+    opacity: 1 !important;
+    display: inline;
+    font-size: 18px;
+    margin-left: 2px;
+}
 
 .angular-google-map-container { 	
 	height : 700px;
 	width : 100%;
  }
+
+
