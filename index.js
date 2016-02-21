@@ -22,6 +22,7 @@ var options =
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
+//Required for service static files
 app.use(serveStatic('ui', {'index': ['index.html', 'index.htm']}));
 
 
@@ -47,10 +48,18 @@ app.use(function (req, res, next) {
 //Adding the required implementation files for API's.
 var getDoodlies = require("./api/routes/GetDoodlies"); 
 var updateDoodlyStatus = require("./api/routes/UpdateDoodlyStatus"); 
+var registerDoodly = require("./api/routes/RegisterDoodly"); 
+var requestDelivery = require("./api/routes/RequestDelivery"); 
+var userLogin = require("./api/routes/UserLogin"); 
+var userSignup = require("./api/routes/UserSignup"); 
 
 //Exposing the services.
 app.post("/doodly/rest/v1/getdoodlies", getDoodlies.getDoodliesImpl);
 app.post("/doodly/rest/v1/updateDoodlydtatus", updateDoodlyStatus.updateDoodlyStatusImpl);
+app.post("/doodly/rest/v1/registerDoodly", registerDoodly.registerDoodlyImpl);
+app.post("/doodly/rest/v1/requestDelivery", requestDelivery.requestDeliveryImpl);
+app.post("/doodly/rest/v1/userLogin", userLogin.userLoginImpl);
+app.post("/doodly/rest/v1/userSignup", userSignup.userSignupImpl);
 
 // Starting the http server.
 app.listen(8090);
