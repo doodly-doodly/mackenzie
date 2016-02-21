@@ -28,7 +28,7 @@
                 
                 <div class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li ng-repeat="menu in menus" ng-class="(menu.id == currentMenu.id) ? 'active' : ''">
+                        <li ng-repeat="menu in menus" ng-class="getMenuClass(menu)">
                             <a class="interactive" ng-click="clickMenu(menu)">{{menu.label}}</a>
                         </li>                        
                     </ul>

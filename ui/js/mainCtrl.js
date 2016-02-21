@@ -1,12 +1,12 @@
 angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', function($scope,$state,$location){  
 	console.log('Inside MainCtrl');
     //TODO
-    $scope.menus = [{label: 'Home',id: "homeMenu",templateUrl:"homepage.html"},
-                      {label: 'About Doodly',id: "aboutUsMenu",templateUrl:"about-us.html"},
-                      {label: 'Simulate',id: "simulate",templateUrl:"simulate.html"},
+    $scope.menus = [{label: 'Home',id: "homeMenu",templateUrl:"homepage.html",url:'/home'},
+                      {label: 'About Doodly',id: "aboutUsMenu",templateUrl:"about-us.html",url:'/about-us'},
+                      {label: 'Simulate',id: "simulate",templateUrl:"simulate.html",url:'/simulate'},
                       /*{label:'Contact',id:"contactMenu",templateUrl:"contact-us.html"},*/
-                      {label: 'Login',id: "loginMenu",templateUrl:"login.html"},
-                      {label:'Become a Doodly',id:"signupMenu",templateUrl:"signup.html"}];
+                      {label: 'Login',id: "loginMenu",templateUrl:"login.html",url:'/login'},
+                      {label:'Become a Doodly',id:"signupMenu",templateUrl:"signup.html",url:'/signup'}];
 
     $scope.currentMenu = $scope.menus[0];        
 
@@ -20,7 +20,12 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
     }
 
     $scope.getMenuClass = function(menu){
-      var obj = $state.current.name;
+      if(menu.url == $location.path()){
+        $scope.currentMenu = menu;
+        return 'active';
+      }else{
+        return '';
+      }
     }
 
     $scope.socialMenus = [{class: 'fa-facebook',id: "fbMenu"},
