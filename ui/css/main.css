@@ -543,6 +543,10 @@ input.search-form:hover {
   margin-bottom: 50px;
 }
 
+#feature .container{
+  padding-top: 50px;
+}
+
 .features{
   padding: 0;
 }

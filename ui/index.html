@@ -37,7 +37,19 @@
         </nav><!--/nav-->
     </header>
     <div class="my-app" ui-view></div>
-
+    <footer id="footer" class="midnight-blue" ng-if="currentMenu.id != 'signupMenu'">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    &copy; 2016 <a target="_blank" title="Delivery expert">Doodly</a>. All Rights Reserved.
+                </div>
+                <div class="col-sm-6">
+                    <ul class="pull-right">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.0/lodash.js"></script>            
@@ -62,17 +74,5 @@
 
 
 </body>
-<footer id="footer" class="midnight-blue">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                &copy; 2016 <a target="_blank" title="Delivery expert">Doodly</a>. All Rights Reserved.
-            </div>
-            <div class="col-sm-6">
-                <ul class="pull-right">
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer><!--/#footer-->
+<!--/#footer-->
 </html>
