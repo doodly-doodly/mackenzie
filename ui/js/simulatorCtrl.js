@@ -61,11 +61,52 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$m
 				} else if(userSelection.userType == 2){
 					marker.type = 'joint';  	                				
 					marker.option.icon.url = 'images/joint.png';
-				}               					
+				}
+				createPackage(userSelection);               					
 				$scope.allMarkers.push(marker);
 			}                
 		}, function () {                			
 		});     
+	}
+
+
+	function createPackage(userSelection){
+		SimulatorService.requestDelivery(createPackageObject(userSelection)).then(
+			function(result){
+				if(result){                            
+					console.log("Output Data :"+result);					
+	          	}   
+			}
+		);	
+	}
+
+	function createPackageObject(userSelection){
+		var pack = {			
+			consumerId: 'jany',
+			packageType: userSelection.pType,
+			size: 'small',
+			packageDescription: 'My package',
+			status: 'waiting_for_pickup',
+			pickupLocation:{
+				name: userSelection.src,
+				mobile: '212121',
+				address: userSelection.src,
+				geoLocation: {
+					lat: userSelection.srcLat,
+					lon: userSelection.srcLng
+				}
+			}, 
+			dropLocation:{
+				name: userSelection.dest,
+				mobile: userSelection.deliveryPhone,
+				address: userSelection.address,
+				geoLocation: {
+					lat: userSelection.destLat,
+					lon: userSelection.destLng
+				}
+			}
+		}
+		return pack;
 	}
 
     $interval(moveThePoints, 3000)
