@@ -126,15 +126,15 @@ img { max-width: 100%; }
 .form-top-right {
 	float: left;
 	width: 25%;
-	padding-top: 5px;
-	font-size: 66px;
+	/*padding-top: 5px;*/
+	font-size: 40px;
 	color: #ddd;
-	line-height: 100px;
+	line-height: 80px;
 	text-align: right;
 }
 
 .form-bottom {
-	padding: 25px;
+	padding: 20px;
 	background: #eee;
 	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
 	text-align: left;

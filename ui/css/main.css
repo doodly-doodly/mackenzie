@@ -539,7 +539,8 @@ input.search-form:hover {
 
 #feature {
   background: #f2f2f2;
-  padding-bottom: 40px;
+  padding-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .features{
@@ -1482,7 +1483,7 @@ ul.social_icons li  a i{
   z-index: -99999;
 }
 
-.clients-area {
+/*.clients-area {
   padding: 60px;
 }
 
@@ -1531,7 +1532,7 @@ ul.social_icons li  a i{
 
 .footer_left {
   padding: 10px;
-}
+}*/
 
 .text-left {
   color: #FFFFFF;
@@ -2508,6 +2509,10 @@ shortcodes page css
   padding-bottom: 30px;
   color: #fff;
   background: #2e2e2e;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 5px solid rgb(197, 45, 47);
 }
 
 #footer a {
@@ -2526,7 +2531,7 @@ shortcodes page css
 
 #footer ul > li {
   display: inline-block;
-  margin-left: 15px;
+  /*margin-left: 15px;*/
 }
 
 

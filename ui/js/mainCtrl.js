@@ -2,8 +2,8 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
 	console.log('Inside MainCtrl');
     //TODO
     $scope.menus = [{label: 'Home',id: "homeMenu",templateUrl:"homepage.html"},
-                      {label: 'About Us',id: "aboutUsMenu",templateUrl:"about-us.html"},
-                      {label: 'Services',id: "servicesMenu",templateUrl:"services.html"},
+                      {label: 'About Doodly',id: "aboutUsMenu",templateUrl:"about-us.html"},
+                      {label: 'Demo',id: "demoMenu",templateUrl:"landing.html"},
                       {label:'Contact',id:"contactMenu",templateUrl:"contact-us.html"},
                       {label: 'Login',id: "loginMenu",templateUrl:"login.html"},
                       {label:'Become a Doodly',id:"signupMenu",templateUrl:"signup.html"}];
@@ -39,7 +39,11 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
       //$state.go(id);
     }
 
-    $scope.signUp = function(){
+    $scope.signUpUser = function(){
+      $state.go("register");
+    }
+
+    $scope.signUpDoodly = function(){
       $state.go("signupMenu");
     }
 
@@ -56,7 +60,7 @@ angular.module('doodly').controller('LoginCtrl', ['$scope','DoodlyService', func
     loginPromise.then($scope.loginSuccess,$scope.loginError);
   }
   $scope.loginSuccess = function(data){
-    
+
   }
   $scope.loginError = function(error){
 
