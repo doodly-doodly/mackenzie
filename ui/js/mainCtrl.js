@@ -4,7 +4,7 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
     $scope.menus = [{label: 'Home',id: "homeMenu",templateUrl:"homepage.html"},
                       {label: 'About Doodly',id: "aboutUsMenu",templateUrl:"about-us.html"},
                       {label: 'Simulate',id: "simulate",templateUrl:"simulate.html"},
-                      {label:'Contact',id:"contactMenu",templateUrl:"contact-us.html"},
+                      /*{label:'Contact',id:"contactMenu",templateUrl:"contact-us.html"},*/
                       {label: 'Login',id: "loginMenu",templateUrl:"login.html"},
                       {label:'Become a Doodly',id:"signupMenu",templateUrl:"signup.html"}];
 
@@ -48,9 +48,9 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
       $state.go("signupMenu");
     }
 
-    $scope.loginBgImage = {
-        //background: 'url(images/delivery-boy.png)'
-    };
+    $scope.readMore = function(){
+      window.scrollBy(0,document.body.scrollHeight);
+    }
 
     if($location.$$url.indexOf('about-us') > -1){
       $scope.currentMenu = $scope.menus[1];
