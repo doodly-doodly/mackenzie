@@ -1,18 +1,14 @@
 <div>   
-  <div class="row">
-    <div class="col-sm-12">
-      Mackenzie Simulator
+      Doodly Simulator
       <ui-gmap-google-map center='map.center' zoom='map.zoom'>
 
       	<ui-gmap-marker ng-repeat="marker in allMarkers" idKey="marker.id" coords="marker.coords" options="marker.option"></ui-gmap-marker>      	
-      	<ui-gmap-polyline ng-repeat="pLine in allPolylines" path="pLine.path" stroke="pLine.stoke"></ui-gmap-polyline>
+      	<!-- <ui-gmap-polyline ng-repeat="pLine in allPolylines" path="pLine.path" stroke="pLine.stoke"></ui-gmap-polyline> -->
 
       	<!--<ui-gmap-markers idKey="markers.id" models="markers" coords="'coords'" options="options" icon="markerIcon" click="'onClick'" events="markers.events">
       	</ui-gmap-markers>
       	<ui-gmap-polyline path='polylines'></ui-gmap-polyline>-->
 	  </ui-gmap-google-map>
-    </div>
-  </div>   
 </div>
 
 

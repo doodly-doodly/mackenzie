@@ -73,7 +73,7 @@ angular.module('doodly').factory('SimulatorFactory', ['$q', '$window',function($
             icon : {
               url: (doodly.type == 'moving'? 'images/doodlynew.png' : 'images/joint.png'),
               animation: google.maps.Animation.DROP,
-              scaledSize: new google.maps.Size(34, 34)
+              scaledSize: new google.maps.Size(28, 34)
             }            
           }
           marker.polyLines = simulatorFactory.getPolylinesForDoodly(doodly);

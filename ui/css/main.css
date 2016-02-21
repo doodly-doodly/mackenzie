@@ -381,7 +381,9 @@ input.search-form:hover {
 }
 
 #main-slider .carousel h2 {
-  color: #fff;
+  /* skp color: #fff;*/
+  color: #e74c3c;
+
 }
 
 #main-slider .carousel .btn-slide {
