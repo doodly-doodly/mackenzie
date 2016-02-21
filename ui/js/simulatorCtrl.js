@@ -3,23 +3,22 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', 'ui
 
 	var currentPositionIndex = 0;			
 
-	GeolocationFactory.getCurrentPosition().then(function (data) {
+	/*GeolocationFactory.getCurrentPosition().then(function (data) {
         console.log(data); 
+    });*/
+	
 
-        SimulatorService.getDoodlies().then(
+	SimulatorService.getDoodlies().then(
 			function(result){
 				if(result){                            
 					console.log("Output Data :"+result);
 					$scope.doodlies = result.data;
-					$scope.map = { center: { latitude: data.lat, longitude: data.lng }, zoom: 15};   					  
+					$scope.map = { center: {latitude: 12.970994, longitude: 77.604815}, zoom: 15};   					  
 					$scope.allPolylines = SimulatorFactory.getPolylines(result.data);
 					$scope.allMarkers = SimulatorFactory.getMarkers(result.data);
 	          	}   
 			}
 		);	
-        
-    });
-	
 
     /*$scope.options = {
     	icon: {
