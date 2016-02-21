@@ -47,3 +47,24 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
         //background: 'url(images/delivery-boy.png)'
     };
 }]);
+
+
+angular.module('doodly').controller('LoginCtrl', ['$scope','DoodlyService', function($scope,DoodlyService){
+
+  $scope.login = function(userId,pwd){
+    var loginPromise = DoodlyService.login(userid,pwd);
+    loginPromise.then($scope.loginSuccess,$scope.loginError);
+  }
+  $scope.loginSuccess = function(data){
+    
+  }
+  $scope.loginError = function(error){
+
+  }
+}]);
+
+
+
+angular.module('doodly').controller('SignupCtrl', ['$scope', function($scope){
+
+}]);
