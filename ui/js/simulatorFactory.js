@@ -81,7 +81,7 @@ angular.module('doodly').factory('SimulatorFactory', ['$q', '$window',function($
           marker.option = {
             icon : {
               url: (doodly.doodlyType == 'MOVING'? 'images/doodlynew.png' : 'images/joint.png'),
-              animation: google.maps.Animation.DROP,
+              /*animation: google.maps.Animation.DROP,*/
               scaledSize: new google.maps.Size(28, 34)
             }            
           }
@@ -101,6 +101,6 @@ angular.module('doodly').factory('SimulatorFactory', ['$q', '$window',function($
     simulatorFactory.getClickedLocation = function(lat, lng, locationName){
       return clickedLocacation;
     }
-   
+
     return simulatorFactory;
 }]);

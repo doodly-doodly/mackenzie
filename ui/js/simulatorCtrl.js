@@ -1,8 +1,9 @@
-angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$modal', 'uiGmapGoogleMapApi', 'GeolocationFactory', 'SimulatorFactory', 'SimulatorService', 
-		function($scope, $interval, $modal, uiGmapGoogleMapApi, GeolocationFactory, SimulatorFactory, SimulatorService){  
+angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$timeout', '$modal', 'uiGmapGoogleMapApi', 'GeolocationFactory', 'SimulatorFactory', 'SimulatorService', 
+		function($scope, $interval, $timeout, $modal, uiGmapGoogleMapApi, GeolocationFactory, SimulatorFactory, SimulatorService){  
 	console.log('Inside LandingCtrl');
 
 	var currentPositionIndex = 0;			
+
 
 	/*GeolocationFactory.getCurrentPosition().then(function (data) {
         console.log(data); 
@@ -71,13 +72,26 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$m
 
 
 	function createPackage(userSelection){
-		SimulatorService.requestDelivery(createPackageObject(userSelection)).then(
+		SimulatorService.requestDelivery(/*createPackageObject(userSelection)*/).then(
 			function(result){
 				if(result){                            
-					console.log("Output Data :"+result);					
+					console.log("Output Data :"+result);		
+					var assignedJointId = result.data;											
+					angular.forEach($scope.allMarkers, function(marker){              
+	            		if(marker.id == assignedJointId){
+	            			marker.option.animation = google.maps.Animation.BOUNCE;	              			
+	            			$timeout(function(){        						
+        						addThisMarker(marker)
+        					}, 4000)        					              			
+	            		}    	            		           
+        			});
 	          	}   
 			}
 		);	
+	}
+
+	function addThisMarker(assignedMarker){
+		assignedMarker.option.animation = null;		
 	}
 
 	function createPackageObject(userSelection){
