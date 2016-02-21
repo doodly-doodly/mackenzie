@@ -39,7 +39,8 @@ angular.module('doodly').factory('SimulatorFactory', ['$q', '$window',function($
           if(doodly.type == 'MOVING'){                
             var geoJsonString = doodly.pathPolyLine;
             if(!geoJsonString){
-              geoJsonString = 'awcnAeqtxMjBsFy@Yo@vAqAxDOh@G^APDP_G`CuBv@mDvAgDjAyAf@GD_AbBw@`BUdIIXWVo@FaD[eGa@_AGqC]WEr@kEvCeQ|@kG';
+              //geoJsonString = 'awcnAeqtxMjBsFy@Yo@vAqAxDOh@G^APDP_G`CuBv@mDvAgDjAyAf@GD_AbBw@`BUdIIXWVo@FaD[eGa@_AGqC]WEr@kEvCeQ|@kG';
+              console.log("geoJsonString not available")
             }
             polyLine.path = getPositions(polyline.decode(geoJsonString));
             polyLine.stoke =  {
@@ -60,6 +61,8 @@ angular.module('doodly').factory('SimulatorFactory', ['$q', '$window',function($
       var geoJsonString = doodly.pathPolyLine;
       if(!geoJsonString){
         geoJsonString = 'awcnAeqtxMjBsFy@Yo@vAqAxDOh@G^APDP_G`CuBv@mDvAgDjAyAf@GD_AbBw@`BUdIIXWVo@FaD[eGa@_AGqC]WEr@kEvCeQ|@kG';
+        console.log("geoJsonString not available")
+        return allPolyLines;
       }
       return getPositions(polyline.decode(geoJsonString));                           
     }
@@ -70,14 +73,14 @@ angular.module('doodly').factory('SimulatorFactory', ['$q', '$window',function($
         angular.forEach(doodlies, function(doodly){  
           var marker = {};          
           marker.id = doodly.doodlyId;
-          marker.type = doodly.type;
+          marker.type = doodly.doodlyType;
           marker.coords = {
-            latitude: doodly.currentPosition.lat,
-            longitude: doodly.currentPosition.lng
+            latitude: doodly.currLocation.lat,
+            longitude: doodly.currLocation.lon
           }
           marker.option = {
             icon : {
-              url: (doodly.type == 'MOVING'? 'images/doodlynew.png' : 'images/joint.png'),
+              url: (doodly.doodlyType == 'MOVING'? 'images/doodlynew.png' : 'images/joint.png'),
               animation: google.maps.Animation.DROP,
               scaledSize: new google.maps.Size(34, 34)
             }            

@@ -25,7 +25,7 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$m
 					 		console.log("lat :"+lat+" lon :"+lon);
 					 		var marker = {
 			                    id: Date.now(),
-			                    type : 'moving',
+			                    type : 'MOVING',
 			                    coords: {
 			                        latitude: lat,
 			                        longitude: lon
@@ -73,7 +73,7 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$m
     	if($scope.allMarkers && $scope.allMarkers.length > 0){
 	    	console.log("Moving the points :"+currentPositionIndex);  
 	    	angular.forEach($scope.allMarkers, function(marker){            
-	          if(marker.type == 'moving'){                
+	          if(marker.type == 'MOVING'){                
 	        	marker.coords.latitude = marker.polyLines[currentPositionIndex].latitude;
 	    		marker.coords.longitude = marker.polyLines[currentPositionIndex].longitude;                                    	
 	          }           
@@ -124,7 +124,7 @@ angular.module('doodly').controller('SimulatorModalCtrl', ['$scope', '$modalInst
         		}
     		}
     	}
-        $scope.searchbox = { template: 'partials/searchTemplate.html', events: events };
+        $scope.searchbox = { template: 'partials/searchTemplate.html', events: events, parentdiv : 'destDiv' };
 
         $scope.applySelectedInputs = function () {          	
         	$modalInstance.close($scope.userSelection);
