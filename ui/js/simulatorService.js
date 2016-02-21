@@ -3,8 +3,8 @@ angular.module('doodly')
 	this.getDoodlies = function(context){
 		return $http({
 			method : "POST",			
-			url : "/doodly/rest/v1/getdoodlies",			
-			//url : "http://10.129.27.63:8090/doodly/rest/v1/getdoodlies",
+			//url : "/doodly/rest/v1/getdoodlies",			
+			url : "http://10.129.27.63:8090/doodly/rest/v1/getdoodlies",
 			data : context			
 		});
 	}
@@ -13,8 +13,8 @@ angular.module('doodly')
 		return $http({
 			header : {'Content-Type': 'application/json'},
 			method : "POST",			
-			url : "/doodly/rest/v1/requestdelivery",			
-			//url : "http://10.129.27.63:8090/doodly/rest/v1/requestdelivery",
+			//url : "/doodly/rest/v1/requestdelivery",			
+			url : "http://10.129.27.63:8090/doodly/rest/v1/requestdelivery",
 			data : pkg			
 		});
 	}

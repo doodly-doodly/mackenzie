@@ -151,6 +151,7 @@ angular.module('doodly').controller('SimulatorModalCtrl', ['$scope', '$modalInst
         $scope.userSelection = {
         	userType : '0'
         }; 
+        $scope.hasErrors = false;
 
         var clickedLocation = SimulatorFactory.getClickedLocation();
 
@@ -190,15 +191,38 @@ angular.module('doodly').controller('SimulatorModalCtrl', ['$scope', '$modalInst
 			zoom: 15 			
 		};
 
-        $scope.applySelectedInputs = function () {          	
-        	$modalInstance.close($scope.userSelection);
+        $scope.applySelectedInputs = function () {
+        	if(!$scope.userSelection.dest || !$scope.userSelection.destLat){
+        		$scope.hasErrors = true;
+        	} else{
+        		$modalInstance.close($scope.userSelection);
+        	}         	        	
         };
 
         $scope.closeSelector = function () {
             $modalInstance.dismiss('cancel');
         };
 
-      /*  function keyPress(){
+       /* $('#searchTextField').on('keyup', keyPress());
+
+        $( "#searchTextField" ).on( "click", "input", function() {
+  			console.log( "JANY TEST" );
+		});
+
+		$(document).on("click", "#searchTextField", function(){
+        	alert("click");
+		});
+
+		$(document).on("keyup", "#searchTextField", function(){
+        	//alert("keyup");
+        	/*var e = jQuery.Event("keypress");
+			e.which = 13; // Enter
+			$('#searchTextField').trigger(e);
+			$('#searchTextField').trigger( "keypress", [13] );
+			
+		});		
+
+       function keyPress(){
         	var autocompleteService = new google.maps.places.AutocompleteService();
         	autocompleteService.getPlacePredictions({input: 'Ban'}, function(predictions, status) {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -207,7 +231,7 @@ angular.module('doodly').controller('SimulatorModalCtrl', ['$scope', '$modalInst
             });
         }
 
-        google.maps.event.addDomListener(window, 'load', initSearch);
+       /*  google.maps.event.addDomListener(window, 'load', initSearch);
 
         var autocompleteService = new google.maps.places.AutocompleteService();
        // var autocomplete = new google.maps.places.Autocomplete(input);
