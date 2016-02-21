@@ -2509,14 +2509,14 @@ shortcodes page css
 }
 
 #footer {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  /*padding-top: 30px;
+  padding-bottom: 30px;*/
   color: #fff;
   background: #2e2e2e;
   position: fixed;
   bottom: 0;
   width: 100%;
-  border-top: 5px solid rgb(197, 45, 47);
+  border-top: 2px solid rgb(197, 45, 47);
 }
 
 #footer a {
