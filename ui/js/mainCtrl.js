@@ -2,11 +2,11 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
 	console.log('Inside MainCtrl');
     //TODO
     $scope.menus = [{label: 'Home',id: "homeMenu",templateUrl:"homepage.html",url:'/home'},
-                      {label: 'About Doodly',id: "aboutUsMenu",templateUrl:"about-us.html",url:'/about-us'},
+                      {label: 'About doodly',id: "aboutUsMenu",templateUrl:"about-us.html",url:'/about-us'},
                       {label: 'Simulate',id: "simulate",templateUrl:"simulate.html",url:'/simulate'},
-                      /*{label:'Contact',id:"contactMenu",templateUrl:"contact-us.html"},*/
+                      {label:'Send package',id:"register",templateUrl:"registration.html.html",url:'/register'},
                       {label: 'Login',id: "loginMenu",templateUrl:"login.html",url:'/login'},
-                      {label:'Become a Doodly',id:"signupMenu",templateUrl:"signup.html",url:'/signup'}];
+                      {label:'Become a doodly',id:"signupMenu",templateUrl:"signup.html",url:'/signup'}];
 
     $scope.currentMenu = $scope.menus[0];        
 
