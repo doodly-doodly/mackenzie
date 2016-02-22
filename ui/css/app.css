@@ -73,5 +73,12 @@
     min-height: 330px;
 }
 
+.user-label{
+    position: fixed;
+    right: 20px;
+    padding-top: 0;
+    font-size: 14px;
+}
+
 
 

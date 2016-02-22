@@ -1,4 +1,4 @@
-angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', function($scope,$state,$location){  
+angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location','MainFactory','$rootScope', function($scope,$state,$location,MainFactory,$rootScope){  
 	console.log('Inside MainCtrl');
     //TODO
     $scope.menus = [{label: 'Send package',id: "sendPackage",templateUrl:"sendPackage.html",url:'/send-package'},
@@ -10,6 +10,8 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
 
     $scope.currentMenu = $scope.menus[1];        
     $scope.params = {type:''};
+    $scope.isloggedIn = MainFactory.getLoggedin();
+    $scope.displayedMenus = $scope.menus;
 
     $scope.getCurrentMenu = function(){
       return $scope.currentMenu;
@@ -28,13 +30,29 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
       }
     }
 
-    $scope.socialMenus = [{class: 'fa-facebook',id: "fbMenu"},
-                      {class: 'fa-twitter',id: "twitterMenu"},
-                      {class: 'fa-linkedin',id: "linkedinMenu"},
-                      {class: 'fa-dribbble',id: "dribbbleMenu"},
-                      {class:'fa-skype', id:"skypeMenu",templateUrl:"blog.html"}];
+    $scope.isDisplayMenu = function(menu){
+      var isDisplay = true;
+      if(menu.id == 'loginMenu' && MainFactory.getLoggedin()){
+        isDisplay = false;
+      }/*else if(menu.id == 'sendPackage' && !MainFactory.getLoggedin()){
+        isDisplay = false;
+      }*/
+      return isDisplay;
+    }
 
+    $rootScope.$on('loginSuccess',$scope.changedMenus);
 
+    $scope.changedMenus = function(){
+      var newMenus =[];
+      angular.forEach($scope.menus, function(value) {
+        if(!(value.id == 'loginMenu')){
+          newMenus.push(value);
+        }
+      });
+      $scope.displayedMenus = newMenus;
+      MainFactory.loggedIn(true);
+      $scope.isloggedIn = true;      
+    }
 
     $scope.clickMenu = function(menu){
       $scope.setCurrentMenu(menu);
@@ -71,21 +89,36 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
 }]);
 
 
-angular.module('doodly').controller('LoginCtrl', ['$scope','DoodlyService','$state', function($scope,DoodlyService,$state){
+angular.module('doodly').controller('LoginCtrl', ['$scope','DoodlyService','$location','MainFactory','$rootScope', function($scope,DoodlyService,$location,MainFactory,$rootScope){
 
   $scope.login = function(userid,pwd){
     var loginPromise = DoodlyService.login(userid,pwd);
     loginPromise.then($scope.loginSuccess,$scope.loginError);
   }
   $scope.loginSuccess = function(data){
-    $state.go('sendPackage');
+    MainFactory.loggedIn(true);
+    $location.url("/send-package");
+    $rootScope.$broadcast('loginSuccess');
   }
   $scope.loginError = function(error){
-    $state.go('sendPackage');
+    MainFactory.loggedIn(true);
+    $location.url("/send-package");
+    //This will be removed once login api is available.
+    $rootScope.$broadcast('loginSuccess');
   }
 }]);
 
-angular.module('doodly').controller('SendPckgCtrl', ['$scope','$stateParams', function($scope,$stateParams) {
+angular.module('doodly').controller('SendPckgCtrl', ['$scope','$stateParams','$location','MainFactory', function($scope,$stateParams,$location,MainFactory) {
+    $scope.userSelection = {
+      userType : '0'
+    };
+    if(!MainFactory.getLoggedin()){
+      $location.url("/login");
+    }
+
+    $scope.sendPackageRedirect = function(){
+      $location.url("/home");
+    }
 
 }]);
 
