@@ -14,13 +14,13 @@
                     <div class="form-bottom">
 	                    <form name="form" role="form" ng-submit="login(userId,userPwd)" method="post" class="login-form">
 	                    	<div class="form-group">
-	                    		<label for="userId">User Id</label><span class="mandatory-symbol"> * </span>
-	                        	<input type="text" name="userId" class="form-userid form-control" id="userId" required ng-model="userId">
+	                    		<!-- <label for="userId">User Id</label><span class="mandatory-symbol"> * </span> -->
+	                        	<input type="text" name="userId" class="form-userid form-control" id="userId" required ng-model="userId" placeholder="User Id">
                                 <!-- <span ng-show="form.userId.$dirty && form.userId.$error.required" class="help-block">User Id is required</span> -->
 	                        </div>
 	                        <div class="form-group">
-	                        	<label for="userPwd">Password</label><span class="mandatory-symbol"> * </span>
-	                        	<input type="password" name="userPwd" class="form-password form-control" id="userPwd" required ng-model="userPwd">
+	                        	<!-- <label for="userPwd">Password</label><span class="mandatory-symbol"> * </span> -->
+	                        	<input type="password" name="userPwd" class="form-password form-control" id="userPwd" required ng-model="userPwd" placeholder="Password">
                                 <!-- <span ng-show="form.userPwd.$dirty && form.userPwd.$error.required" class="help-block">Password is required</span> -->
 	                        </div>
 	                        <button type="submit" class="btn">Sign in!</button>

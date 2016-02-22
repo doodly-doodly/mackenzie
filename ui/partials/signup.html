@@ -6,7 +6,7 @@
                   <div class="form-box">
                     <div class="form-top">
                       <div class="form-top-left">
-                        <h3>Become a Doodly</h3>
+                        <h3>A few details please..</h3>
                       </div>
                       <div class="form-top-right">
                         <i class="fa fa-pencil"></i>
@@ -14,8 +14,8 @@
                     </div>
                     <div class="form-bottom">
                     <form role="form" action="" method="post" class="registration-form">
-                      <div class="form-group">
-                        <label>Doodly Type</label><span class="mandatory-symbol"> * </span><br/>
+                      <div class="form-group" ng-if="type == 'doodly'">
+                        <!-- <label>Doodly Type</label><span class="mandatory-symbol"> * </span><br/> -->
                         <input id="movingRadio" name="type" type="radio" ng-model="doodlyType" value="moving" required/>
                         <label class="normal-font" for="movingRadio">Moving Doodly</label>
                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -24,19 +24,19 @@
                       </div>
 
                       <div class="form-group">
-                        <label class="" for="form-name">Name</label><span class="mandatory-symbol"> * </span>
-                        <input type="text" name="form-name" placeholder="Name..." class="form-name form-control" id="form-name" required>
+                        <!-- <label class="" for="form-name">Name</label><span class="mandatory-symbol"> * </span> -->
+                        <input type="text" name="form-name" placeholder="Name" class="form-name form-control" id="form-name" required>
                       </div>
                       <div class="form-group">
-                        <label class="" for="form-mob">Mobile</label><span class="mandatory-symbol"> * </span>
-                        <input type="tel" name="form-mob" class="form-control" id="form-mob" pattern="^\d{10}$" required>
+                        <!-- <label class="" for="form-mob">Mobile</label><span class="mandatory-symbol"> * </span> -->
+                        <input type="tel" name="form-mob" class="form-control" id="form-mob" pattern="^\d{10}$" placeholder="Mobile" required>
                       </div>
                       <div class="form-group">
-                        <label for="form-addr">Address</label><span class="mandatory-symbol"> * </span>
-                        <textarea name="form-addr" class="form-addr form-control" id="form-addr" required></textarea>
+                        <!-- <label for="form-addr">Address</label><span class="mandatory-symbol"> * </span> -->
+                        <textarea name="form-addr" class="form-addr form-control" id="form-addr" required placeholder="Address"></textarea>
                       </div>
                       <div class="form-group">
-                        <label>Gender</label><span class="mandatory-symbol"> * </span></br>
+                        <!-- <label>Gender</label><span class="mandatory-symbol"> * </span></br> -->
                         <input id="maleRadio" name="gender" type="radio" ng-model="doodlygender" value="m" required/>
                         <label class="normal-font" for="maleRadio">Male</label>
                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -44,7 +44,7 @@
                         <label class="normal-font" for="femaleRadio">Female</label>
                       </div>
                       <div class="form-group">
-                        <label>Marital Status</label><span class="mandatory-symbol"> * </span></br>
+                        <!-- <label>Marital Status</label><span class="mandatory-symbol"> * </span></br> -->
                         <input id="marriedRadio" type="radio" ng-model="doodlyMarStatus" name="status" value="m" required/>
                         <label class="normal-font" for="marriedRadio">Married</label>
                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -52,12 +52,12 @@
                         <label class="normal-font" for="singleRadio">Single</label>
                       </div>
                       <div class="form-group">
-                        <label class="" for="form-id">User Id</label><span class="mandatory-symbol"> * </span>
-                        <input type="text" name="form-id" class="form-id form-control" id="form-id" required>
+                        <!-- <label class="" for="form-id">User Id</label><span class="mandatory-symbol"> * </span> -->
+                        <input type="text" name="form-id" class="form-id form-control" id="form-id" required placeholder="User Id">
                       </div>
                       <div class="form-group">
-                        <label class="" for="form-pwd">Password</label><span class="mandatory-symbol"> * </span>
-                        <input type="password" name="form-pwd" placeholder="Password..." class="form-control" id="form-pwd" required>
+                        <!-- <label class="" for="form-pwd">Password</label><span class="mandatory-symbol"> * </span> -->
+                        <input type="password" name="form-pwd" placeholder="Password" class="form-control" id="form-pwd" required>
                         <!-- <input type="password" name="form-retype-pwd" placeholder="Retype Password..." class="form-control" id="form-retype-pwd"> -->
                       </div>
                       

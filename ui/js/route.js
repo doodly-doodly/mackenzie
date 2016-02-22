@@ -16,11 +16,6 @@ angular.module('doodly').config(function($stateProvider, $urlRouterProvider) {
         templateUrl: 'partials/about-us.html',        
         controller : 'MainCtrl'
       })
-      /*.state ('demoMenu', {
-        url: '/demo',
-        templateUrl: 'partials/simulate.html',        
-        controller : 'SimulatorCtrl'
-      })*/
       .state ('contactMenu', {
         url: '/contact',
         templateUrl: 'partials/contact-us.html',        
@@ -32,14 +27,19 @@ angular.module('doodly').config(function($stateProvider, $urlRouterProvider) {
         controller : 'LoginCtrl'
       })
       .state ('signupMenu', {
-        url: '/signup',
+        url: '/signup/:type',
         templateUrl: 'partials/signup.html',        
-        controller : 'SignupCtrl'
+        controller : 'SignUpCtrl'
       })
-      .state('register',{
-        url : '/register',
-        templateUrl : 'partials/registration.html',
-        controller : 'SimulatorModalCtrl'
+      .state('signupDoodly',{
+        url : '/signup/:type',
+        templateUrl : 'partials/signup.html',
+        controller : 'SignUpCtrl'
+      })
+      .state('sendPackage',{
+        url : '/send-package',
+        templateUrl : 'partials/sendPackage.html',
+        controller : 'SendPckgCtrl'
       })
       $urlRouterProvider.otherwise('/home');
 });
