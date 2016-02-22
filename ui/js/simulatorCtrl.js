@@ -67,7 +67,7 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$t
 				$scope.allMarkers.push(marker);
 				$timeout(function(){        						
         			removeThisMarker(marker)
-        		}, 10000)  
+        		}, 25000)  
 			}                
 		}, function () {                			
 		});     
@@ -196,13 +196,12 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$t
 }]);
 
 
-angular.module('doodly').controller('SimulatorModalCtrl', ['$scope', '$modalInstance', 'SimulatorFactory', function($scope, $modalInstance, SimulatorFactory) {        
+angular.module('doodly').controller('SimulatorModalCtrl', ['$scope', '$modalInstance', 'SimulatorFactory', 'uiGmapGoogleMapApi', function($scope, $modalInstance, SimulatorFactory, uiGmapGoogleMapApi) {        
         
         $scope.modalHeader = "What you want to do?";
         $scope.userSelection = {
         	userType : '0'
-        }; 
-        $scope.userSelection.dest = "BMC Software, Bangalore";
+        };         
         $scope.hasErrors = false;
 
         var clickedLocation = SimulatorFactory.getClickedLocation();
@@ -240,8 +239,40 @@ angular.module('doodly').controller('SimulatorModalCtrl', ['$scope', '$modalInst
         $scope.searchbox = { template: 'partials/searchTemplate.html', events: events, parentdiv : 'destDiv' };
 
         $scope.newMap = { center: {latitude: 12.970994, longitude: 77.604815},
-			zoom: 15 			
+			zoom: 16, 
+			events: {
+				click: function (maps, eventName, args) {
+				  $scope.showMap = false;
+				  handleDestMapClick(args);
+				}
+			} 			
 		};
+        
+        $scope.resizeMap = function(){
+        	google.maps.event.trigger($scope.newMap, 'resize');
+        	//$scope.newMap.setCenter(0);
+		}	
+
+		function handleDestMapClick(args){			
+			var e = args[0];
+			var lat = e.latLng.lat(),lon = e.latLng.lng();
+			var newlatlng = new google.maps.LatLng(lat, lon);
+			
+			geocoder.geocode({ 'latLng': newlatlng }, function (results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+	    			if (results[1]) {
+	        			console.log(results[1].formatted_address); // details address        			
+	        			 $scope.userSelection.dest = results[1].formatted_address;
+	        			 $scope.userSelection.destLat = lat;
+        				 $scope.userSelection.destLng = lon;
+	    			} else {
+	        			console.log('Location not found');
+	    			}
+				} else {
+	    			console.log('Geocoder failed due to: ' + status);
+				}
+    		});           		
+		}
 
         $scope.applySelectedInputs = function () {
         	if(!$scope.userSelection.dest || !$scope.userSelection.destLat){

@@ -34,9 +34,14 @@
  }
 
  .object-selection-container .angular-google-map-container{
-    height : 0px;
+    height : 400px;
     width : 100%;  
  }
+
+ .modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
 
  .doodly-radio{
     color: #9d9da3;    

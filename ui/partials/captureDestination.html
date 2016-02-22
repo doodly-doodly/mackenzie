@@ -1,0 +1,86 @@
+<div class="object-selection-container">
+    <div class="modal-header">
+        <h4 class="modal-title">Select the drop point</h4>      
+    </div>
+    <div class="container">
+        <div class="row">
+            <form role="form">            
+                <div class="col-lg-6">
+                    <div class="col-sm-12 form-group">                    
+                        <div class="btn-group input-group">
+                            <label class="radio-inline doodly-radio"><input type="radio" ng-model="userSelection.userType" value="0" name="optradio" style="margin-top:7px;">Send a package</label>
+                            <label class="radio-inline doodly-radio disabled"><input type="radio" ng-disabled="true" ng-model="userSelection.userType" value="1" name="optradio" style="margin-top:7px">Register Doodly</label>
+                            <label class="radio-inline doodly-radio disabled"><input type="radio" ng-disabled="true" ng-model="userSelection.userType" value="2" name="optradio" style="margin-top:7px">Register Joint</label>              
+                        </div>
+                    </div>            
+                    <div class="col-sm-12 form-group" id="srcDiv">
+                        <div><input autocomplete="off" aria-haspopup="false" role="combobox" aria-autocomplete="both" class="doodly-input"  placeholder="Choose pickup point" ng-model="userSelection.src"></div>
+                        <span class="doodly-input-line"></span>                                               
+                    </div>
+                    <div ng-show="hasErrors" class="col-sm-12">
+                        <span style="color:red">Please hit enter in pickup point and submit</span>
+                    </div>
+                    <div class="col-sm-12 form-group" id="searchbox">                        
+                        <ui-gmap-google-map center="newMap.center" zoom="newMap.zoom">                                
+                          <ui-gmap-search-box template="searchbox.template" events="searchbox.events" position="BOTTOM_RIGHT" parentdiv="'searchbox'"></ui-gmap-search-box>                            
+                        </ui-gmap-google-map>               
+                        <span class="doodly-input-line"></span>                               
+                    </div>      
+                    <div class="form-group col-sm-12" ng-show="userSelection.userType==0">                    
+                        <div class="input-group col-sm-12">
+                            <input class="form-control" id="address" ng-model="userSelection.address" placeholder="Delivery Address" style="border-radius:3px" required>         
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12" ng-show="userSelection.userType == 0">                    
+                        <div class="input-group col-sm-12">
+                            <input class="form-control" id="deliveryPhone" ng-model="userSelection.dPhone" placeholder="Delivery Phone" style="border-radius:3px" required>         
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12" ng-show="userSelection.userType==0">                    
+                        <div class="input-group col-sm-12">
+                            <input class="form-control" ng-model="userSelection.pType" id="name" placeholder="Package Type" style="border-radius:3px" required>                    
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12" ng-show="userSelection.userType==0">                    
+                        <div class="input-group col-sm-12">
+                            <input class="form-control" id="phone" ng-model="userSelection.phone" placeholder="Quantity" style="border-radius:3px" required>         
+                        </div>
+                    </div>                    
+                    <div class="form-group col-sm-12" ng-show="userSelection.userType != 0">                    
+                        <div class="input-group col-sm-12">
+                            <input class="form-control" ng-model="userSelection.name" id="name" placeholder="Name" style="border-radius:3px" required>                    
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12" ng-show="userSelection.userType != 0">                    
+                        <div class="input-group col-sm-12">
+                            <input class="form-control" id="phone" ng-model="userSelection.phone" placeholder="Phone" style="border-radius:3px" required>         
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12" ng-show="userSelection.userType != 0" >                    
+                        <div class="input-group col-sm-12">
+                            <input type="email" class="form-control" id="email" ng-model="userSelection.email" style="border-radius:3px" placeholder="Email: name@doodly.com" required>                    
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12" ng-show="userSelection.userType != 0">                    
+                        <div class="input-group col-sm-12">
+                            <input class="form-control" id="capacity" ng-model="userSelection.capacity" placeholder="Capacity" style="border-radius:3px" required>         
+                        </div>
+                    </div>                       
+                </div>
+            </form>        
+        </div>
+    </div>
+
+    <div class="modal-footer">
+       <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-6">                        
+                    <input type="submit" name="submit" id="submit" value="Submit" ng-click="applySelectedInputs()" class="col-sm-12 btn btn-info">
+                </div>
+                <div class="col-sm-6">
+                    <input type="submit" name="submit" id="submit" value="Cancel" ng-click="closeSelector()" class="col-sm-12 btn btn-info">                                    
+                </div>
+            </div>
+        </div>            
+    </div>
+</div>
