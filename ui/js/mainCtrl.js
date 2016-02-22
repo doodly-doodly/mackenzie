@@ -1,15 +1,15 @@
 angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', function($scope,$state,$location){  
 	console.log('Inside MainCtrl');
     //TODO
-    $scope.menus = [{label: 'Home',id: "homeMenu",templateUrl:"homepage.html",url:'/home'},
-                      {label: 'About doodly',id: "aboutUsMenu",templateUrl:"about-us.html",url:'/about-us'},
-                      {label: 'Simulate',id: "simulate",templateUrl:"simulate.html",url:'/simulate'},
-                      {label:'Send package',id:"register",templateUrl:"registration.html.html",url:'/register'},
-                      {label: 'Login',id: "loginMenu",templateUrl:"login.html",url:'/login'},
-                      {label:'Become a doodly',id:"signupMenu",templateUrl:"signup.html",url:'/signup'}];
+    $scope.menus = [{label: 'Send package',id: "sendPackage",templateUrl:"sendPackage.html",url:'/send-package'},
+                    {label: 'Home',id: "homeMenu",templateUrl:"homepage.html",url:'/home'},
+                    {label: 'About us',id: "aboutUsMenu",templateUrl:"about-us.html",url:'/about-us'},
+                    {label: 'Simulate',id: "simulate",templateUrl:"simulate.html",url:'/simulate'},
+                    {label: 'Login',id: "loginMenu",templateUrl:"login.html",url:'/login'},
+                    {label:'Become a doodly',id:"signupMenu",templateUrl:"signup.html",url:'/signup/doodly'}];
 
-    $scope.currentMenu = $scope.menus[0];        
-
+    $scope.currentMenu = $scope.menus[1];        
+    $scope.params = {type:''};
 
     $scope.getCurrentMenu = function(){
       return $scope.currentMenu;
@@ -38,7 +38,7 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
 
     $scope.clickMenu = function(menu){
       $scope.setCurrentMenu(menu);
-    	$state.go(menu.id);
+    	$location.url(menu.url);
     }
 
     $scope.clickSocialMenu = function(id){
@@ -46,11 +46,11 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
     }
 
     $scope.signUpUser = function(){
-      $state.go("register");
+      $location.url("/signup/user");
     }
 
     $scope.signUpDoodly = function(){
-      $state.go("signupMenu");
+      $location.url("/signup/doodly");
     }
 
     $scope.readMore = function(){
@@ -71,22 +71,24 @@ angular.module('doodly').controller('MainCtrl', ['$scope','$state','$location', 
 }]);
 
 
-angular.module('doodly').controller('LoginCtrl', ['$scope','DoodlyService', function($scope,DoodlyService){
+angular.module('doodly').controller('LoginCtrl', ['$scope','DoodlyService','$state', function($scope,DoodlyService,$state){
 
-  $scope.login = function(userId,pwd){
+  $scope.login = function(userid,pwd){
     var loginPromise = DoodlyService.login(userid,pwd);
     loginPromise.then($scope.loginSuccess,$scope.loginError);
   }
   $scope.loginSuccess = function(data){
-
+    $state.go('sendPackage');
   }
   $scope.loginError = function(error){
-
+    $state.go('sendPackage');
   }
 }]);
 
+angular.module('doodly').controller('SendPckgCtrl', ['$scope','$stateParams', function($scope,$stateParams) {
 
+}]);
 
-angular.module('doodly').controller('SignupCtrl', ['$scope', function($scope){
-
+angular.module('doodly').controller('SignUpCtrl', ['$scope','$stateParams', function($scope,$stateParams) {        
+    $scope.type = $stateParams.type; 
 }]);

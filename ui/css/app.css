@@ -64,8 +64,8 @@
     left: 16px;
 }
 
-.height-500{
-    height: 500px;
+.contact-team-height{
+    min-height: 330px;
 }
 
 
