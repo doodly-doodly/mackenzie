@@ -11,7 +11,7 @@ exports.updateDoodlyStatusImpl = function (req, res)
     //res.writeHead(200, "OK", {'Content-Type': 'text/html'});    
     //res.end(JSON.stringify(data));
 
-    esmodule.doodlyReachedJoint(data.doodlyId, data.lat, data.lon , function(pickedUpPack, droppedPack, point) ){
+    esmodule.doodlyReachedJoint(data.doodlyId, data.lat, data.lon , function(pickedUpPack, droppedPack, point) {
 		result = {pickedUpPack : pickedUpPack, droppedPack : droppedPack, polyLine: point, doodlyId : did};
 		res.writeHead(200, "OK", {'Content-Type': 'text/html'});
     	res.end(result);
