@@ -15,9 +15,11 @@ exports.requestDeliveryImpl = function (req, res)
     //esmodule.createBooking(data, function(packageId, jointId, doodlyId, polyLine){
     esmodule.createBooking(data, function(status, result){
     	if(status == "ok"){
+            console.log("Creating booking " + JSON.stringify(result) );
     		res.writeHead(200, "OK", {'Content-Type': 'text/html'});
     		res.end(JSON.stringify(result));
     	}else{
+            console.log("Creating booking " + result );
     		res.writeHead(100, "error", {'Content-Type': 'text/html'});
     		res.end(result);
     	}
