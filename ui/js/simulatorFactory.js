@@ -2,7 +2,7 @@ angular.module('doodly').factory('SimulatorFactory', ['$q', '$window',function($
 
     var simulatorFactory = this;
 
-    var stokeColors = ['#ff7373', '#bd00ff'];
+    var stokeColors = ['#ff7373', '#bd00ff', '#8470ff', '#c2eca2', '#8dff35', '#ff9b35', '#ff6d6d', '#009a82', '#c39797', '#00ff7f', '#8b7765'];
 
     var clickedLocacation = {
       lat : 0,
@@ -23,11 +23,14 @@ angular.module('doodly').factory('SimulatorFactory', ['$q', '$window',function($
       return polyLines;
     }
 
-    function getStokeColor(counter){
-      if(counter%2 == 0){
-        return stokeColors[0];
-      }
-      return stokeColors[1];       
+    function getStokeColor(counter){      
+      var num = Math.floor(Math.random() * 10 + 1);
+      return stokeColors[num];       
+    }
+
+    simulatorFactory.getStokeColor = function(){
+      var num = Math.floor(Math.random() * 10 + 1);
+      return stokeColors[num];        
     }
 
     simulatorFactory.getPolylines = function(doodlies){
@@ -44,7 +47,7 @@ angular.module('doodly').factory('SimulatorFactory', ['$q', '$window',function($
             } else{
               polyLine.path = getPositions(polyline.decode(geoJsonString));
               polyLine.stoke =  {
-                color : getStokeColor(counter)
+                color : simulatorFactory.getStokeColor()
               }                              
               allPolyLines.push(polyLine);
               counter ++;  
@@ -58,7 +61,7 @@ angular.module('doodly').factory('SimulatorFactory', ['$q', '$window',function($
 
     simulatorFactory.getPolylinesForDoodly = function(doodly){
       var allPolyLines = [];                    
-      var geoJsonString = doodly.pathPolyLine;
+      var geoJsonString = doodly.polyLine;
       if(!geoJsonString){
         geoJsonString = 'awcnAeqtxMjBsFy@Yo@vAqAxDOh@G^APDP_G`CuBv@mDvAgDjAyAf@GD_AbBw@`BUdIIXWVo@FaD[eGa@_AGqC]WEr@kEvCeQ|@kG';
         console.log("geoJsonString not available")

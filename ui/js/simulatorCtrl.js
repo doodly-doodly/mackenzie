@@ -65,9 +65,24 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$t
 				}
 				createPackage(userSelection);               					
 				$scope.allMarkers.push(marker);
+				$timeout(function(){        						
+        			removeThisMarker(marker)
+        		}, 10000)  
 			}                
 		}, function () {                			
 		});     
+	}
+
+	function removeThisMarker(packMarker){
+		var markerIndex = 0;
+		var count = 0;
+		angular.forEach($scope.allMarkers, function(marker){              
+			if(marker.id == packMarker.id){	
+				markerIndex = count;			              			
+			}   
+			count++; 	  			
+		});
+		$scope.allMarkers.splice(markerIndex, 1)
 	}
 
 
@@ -77,17 +92,30 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$t
 				if(result){                            
 					console.log("Output Data :"+result);		
 					//var assignedJointId = result.data;						
-					
 					var assignedJointId = result.data.jointId;											
 					var assignedDoodlyId = result.data.doodlyId;
 										
 					angular.forEach($scope.allMarkers, function(marker){              
 	            		if(marker.id == assignedJointId){
-	            			marker.option.animation = google.maps.Animation.BOUNCE;	              			
+	            			marker.option.animation = google.maps.Animation.BOUNCE;	 	            			
 	            			$timeout(function(){        						
         						addThisMarker(marker)
         					}, 4000)        					              			
 	            		}    	            		           
+	            		if(marker.id == assignedDoodlyId){
+	            			//marker.option.animation = google.maps.Animation.BOUNCE;	 
+	            			marker.polyLines = SimulatorFactory.getPolylinesForDoodly(result.data); 
+	            			var polyLine = {
+	            				path : marker.polyLines,
+	            				stoke : {
+	            					color : SimulatorFactory.getStokeColor()
+	            				}
+	            			} 
+	            			$scope.allPolylines.push(polyLine);
+	            			/*$timeout(function(){        						
+        						addThisMarker(marker)
+        					}, 4000)  */           				            			      					              			
+	            		}
         			});
 	          	}   
 			}
@@ -139,7 +167,7 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$t
 	    		marker.coords.longitude = marker.polyLines[markerPositionIndex].longitude;                                    	
 	    		marker.positionIndex = marker.positionIndex + 1;
 	    		if(marker.positionIndex == marker.polyLines.length){
-	    			updateStatus(marker, marker.coords.latitude, marker.coords.longitude);
+	    			updateStatus(marker, marker.coords.latitude, marker.coords.longitude);	    			
 	    		}
 	    		console.log("Moved the points End:"+marker.positionIndex);
 	          }	                    
@@ -174,6 +202,7 @@ angular.module('doodly').controller('SimulatorModalCtrl', ['$scope', '$modalInst
         $scope.userSelection = {
         	userType : '0'
         }; 
+        $scope.userSelection.dest = "BMC Software, Bangalore";
         $scope.hasErrors = false;
 
         var clickedLocation = SimulatorFactory.getClickedLocation();
