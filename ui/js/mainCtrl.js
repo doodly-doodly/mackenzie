@@ -116,6 +116,10 @@ angular.module('doodly').controller('SendPckgCtrl', ['$scope','$stateParams','$l
       $location.url("/login");
     }
 
+    $scope.sendPackageRedirect = function(){
+      $location.url("/home");
+    }
+
 }]);
 
 angular.module('doodly').controller('SignUpCtrl', ['$scope','$stateParams', function($scope,$stateParams) {        
