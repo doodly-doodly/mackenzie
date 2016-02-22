@@ -28,25 +28,18 @@
                 
                 <div class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li ng-repeat="menu in menus" ng-class="getMenuClass(menu)">
+                        <li ng-repeat="menu in displayedMenus" ng-if="isDisplayMenu(menu)" ng-class="getMenuClass(menu)">
                             <a class="interactive" ng-click="clickMenu(menu)">{{menu.label}}</a>
                         </li>                        
                     </ul>
+                </div>
+                <div class="user-label" ng-if="isloggedIn">
+                    Peter
                 </div>
             </div><!--/.container-->
         </nav><!--/nav-->
     </header>
     <div class="my-app" ui-view></div>
-    <!-- <footer id="footer" class="midnight-blue" ng-if="currentMenu.id != 'signupMenu'">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    &copy; 2016 <a target="_blank" title="Delivery expert">Doodly</a>. All Rights Reserved.
-                </div>
-               
-            </div>
-        </div>
-    </footer> -->
     <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.0/lodash.js"></script>            
@@ -65,6 +58,7 @@
     <script src="js/route.js"></script>
     <script src="js/simulatorCtrl.js"></script>   
     <script src="js/simulatorFactory.js"></script>
+    <script src="js/mainFactory.js"></script>
     <script src="js/simulatorService.js"></script>
     <script src="js/doodlyService.js"></script>
     <script src="js/mainCtrl.js"></script>
