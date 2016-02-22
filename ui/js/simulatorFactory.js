@@ -74,6 +74,7 @@ angular.module('doodly').factory('SimulatorFactory', ['$q', '$window',function($
           var marker = {};          
           marker.id = doodly.doodlyId;
           marker.type = doodly.doodlyType;
+          marker.positionIndex = 0;
           marker.coords = {
             latitude: doodly.currLocation.lat,
             longitude: doodly.currLocation.lon

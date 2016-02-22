@@ -16,7 +16,7 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$t
 					console.log("Output Data :"+result);
 					$scope.doodlies = result.data;
 					$scope.map = { center: {latitude: 12.970994, longitude: 77.604815},
-					 zoom: 15, 
+					 zoom: 16, 
 					 events: {
 					 	click: function (maps, eventName, args) {
 					 		  handleMapClick(args);
@@ -76,7 +76,11 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$t
 			function(result){
 				if(result){                            
 					console.log("Output Data :"+result);		
-					var assignedJointId = result.data;											
+					//var assignedJointId = result.data;						
+					
+					var assignedJointId = result.data.jointId;											
+					var assignedDoodlyId = result.data.doodlyId;
+										
 					angular.forEach($scope.allMarkers, function(marker){              
 	            		if(marker.id == assignedJointId){
 	            			marker.option.animation = google.maps.Animation.BOUNCE;	              			
@@ -103,7 +107,7 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$t
 			status: 'waiting_for_pickup',
 			pickupLocation:{
 				name: userSelection.src,
-				mobile: '212121',
+				mobile: '123456789',
 				address: userSelection.src,
 				geoLocation: {
 					lat: userSelection.srcLat,
@@ -126,17 +130,36 @@ angular.module('doodly').controller('SimulatorCtrl', ['$scope', '$interval', '$t
     $interval(moveThePoints, 3000)
 
     function moveThePoints(){
-    	if($scope.allMarkers && $scope.allMarkers.length > 0){
-	    	console.log("Moving the points :"+currentPositionIndex);  
-	    	angular.forEach($scope.allMarkers, function(marker){            
-	          if(marker.type == 'MOVING' && marker.polyLines && marker.polyLines.length > currentPositionIndex){                
-	        	marker.coords.latitude = marker.polyLines[currentPositionIndex].latitude;
-	    		marker.coords.longitude = marker.polyLines[currentPositionIndex].longitude;                                    	
-	          }           
-        	});   		    	
-	    	currentPositionIndex++;
-	    	console.log("Moved the points :"+currentPositionIndex);
+    	if($scope.allMarkers && $scope.allMarkers.length > 0){	    	
+	    	angular.forEach($scope.allMarkers, function(marker){ 
+	    	console.log("Moving the points Start:"+marker.positionIndex);  
+	    	 var markerPositionIndex = marker.positionIndex;            
+	          if(marker.type == 'MOVING' && marker.polyLines && marker.polyLines.length > markerPositionIndex){                
+	        	marker.coords.latitude = marker.polyLines[markerPositionIndex].latitude;
+	    		marker.coords.longitude = marker.polyLines[markerPositionIndex].longitude;                                    	
+	    		marker.positionIndex = marker.positionIndex + 1;
+	    		if(marker.positionIndex == marker.polyLines.length){
+	    			updateStatus(marker, marker.coords.latitude, marker.coords.longitude);
+	    		}
+	    		console.log("Moved the points End:"+marker.positionIndex);
+	          }	                    
+        	});   		    		    		    	
     	}
+    }
+
+    function updateStatus(marker, lat, lon){
+    	var statusObj = {
+    		doodlyId : marker.id,
+    		lat : lat,
+    		lon : lon
+    	}
+    	SimulatorService.updateStatus(statusObj).then(
+			function(result){
+				if(result){                            
+					console.log("Output Data :"+result);							
+	          	}   
+			}
+		);	
     }
 
 	uiGmapGoogleMapApi.then(function(maps) {
